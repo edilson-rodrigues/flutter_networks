@@ -9,6 +9,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // verifica se o teclado esta aberto
+    final viewInsetsBottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -16,10 +18,12 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.all(AppSpacer.x3),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                LoginLogoWidget(),
-                LoginFormWidget(),
-                Text('Não tem conta? Cadastre-se'),
+              children: [
+                const LoginLogoWidget(),
+                const LoginFormWidget(),
+                // se o teclado estiver aberto, ocultar o widget
+                // LoginSignUpWidget
+                if (viewInsetsBottom == 0) const LoginSignUpWidget(),
               ],
             ),
           ),
